@@ -53,19 +53,33 @@ brew services restart jenkins-lts
 ```groovy
 pipeline {
     agent any
+
     stages {
-        stage('Clone Repository') {
+        stage("Clone Code") {
             steps {
-                git 'https://github.com/YOUR_USERNAME/YOUR_REPO.git'
+                echo "Started Cloning Code from GitHub"
+		git url: "https://github.com/raza1315/jenkins.git" , branch: "main"
             }
         }
-        stage('Build & Run') {
+        stage("Deploy") {
             steps {
-                sh 'docker-compose up -d --build'
+                echo "Running Docker Compose to Start Container"
+		sh "docker compose down"
+		sh "docker-compose up -d --build"
             }
         }
     }
+
+    post {
+        success {
+            echo 'Server deployed successfully!'
+        }
+        failure {
+            echo 'Deployment failed!'
+        }
+    }
 }
+
 ```
 
 ### 6. Create a Jenkins Job
