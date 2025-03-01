@@ -11,14 +11,14 @@ pipeline {
         stage("Deploy") {
             steps {
                 echo "Running Docker Compose to Start Containers"
-		sh "docker compose down && docker compose up -d"
+		sh "/usr/local/bin/docker-compose up -d --build"
             }
         }
     }
 
     post {
         success {
-            echo 'Frontend application deployed successfully!'
+            echo 'Server deployed successfully!'
         }
         failure {
             echo 'Deployment failed!'
