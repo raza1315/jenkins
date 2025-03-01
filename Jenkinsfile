@@ -8,15 +8,10 @@ pipeline {
 		git url: "https://github.com/raza1315/jenkins.git" , branch: "main"
             }
         }
-
-        stage("Build") {
-            steps {
-                echo "Started Building Docker Image"
-            }
-        }
         stage("Deploy") {
             steps {
                 echo "Running Docker Compose to Start Containers"
+		sh "docker compose down && docker compose up -d"
             }
         }
     }
