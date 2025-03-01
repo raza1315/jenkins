@@ -5,6 +5,7 @@ pipeline {
         stage("Clone Code") {
             steps {
                 echo "Started Cloning Code from GitHub"
+		git url: "https://github.com/raza1315/jenkins.git" , branch: "main"
             }
         }
 
@@ -13,13 +14,6 @@ pipeline {
                 echo "Started Building Docker Image"
             }
         }
-
-        stage("Push Image to DockerHub") {
-            steps {
-                echo "Tagging Image and Pushing it to DockerHub"
-            }
-        }
-
         stage("Deploy") {
             steps {
                 echo "Running Docker Compose to Start Containers"
