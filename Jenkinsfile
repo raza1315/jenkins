@@ -10,10 +10,9 @@ pipeline {
         }
         stage("Deploy") {
             steps {
-                echo "Running Docker Compose to Start Containers"
-		sh "docker login"
-		sh "/usr/local/bin/docker-compose down"
-		sh "/usr/local/bin/docker-compose up -d --build"
+                echo "Running Docker Compose to Start Container"
+		sh "docker compose down"
+		sh "docker-compose up -d --build"
             }
         }
     }
