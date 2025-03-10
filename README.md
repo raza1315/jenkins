@@ -99,5 +99,5 @@ View logs if needed:
 ```sh
 docker-compose logs -f
 ```
-Your app should now be running and automatically redeployed on GitHub pushes!
+Your app should now be running and automatically redeployed on github pushes!
 
